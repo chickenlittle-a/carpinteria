@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carpintería — Guadalajara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+  --cream: #f0f4f8;
+  --warm-white: #f8f9fc;
+  --dark: #0f1923;
+  --wood: #2e5f8a;
+  --wood-light: #6a9fc0;
+  --wood-dark: #1a3a54;
+  --gold: #4a9eda;
+  --gold-light: #a8d4f0;
+  --text: #1a2733;
+  --text-light: #5a7a94;
+  --border: rgba(46, 95, 138, 0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--warm-white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(250, 248, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--wood-dark);
+      text-transform: uppercase;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--wood); }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(139,94,60,0.25) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(92,61,32,0.3) 0%, transparent 50%);
+    }
+
+    .hero-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--wood-light);
+    }
+
+    .hero-subtitle {
+      margin-top: 1.8rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 1.9;
+      color: rgba(245, 240, 232, 0.55);
+      max-width: 340px;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    .hero-since {
+      margin-top: 3rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+      position: relative;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+
+    .hero-since .year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: var(--wood-dark);
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    .hero-since .since-text {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding-bottom: 0.7rem;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+      width: fit-content;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-100%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+
+    .hero-cta:hover { color: var(--dark); }
+    .hero-cta:hover::before { transform: translateX(0); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero-right-inner {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, #d4b896 0%, #c4976a 30%, #8b5e3c 60%, #5c3d20 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Grain texture overlay */
+    .hero-right-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+    }
+
+    /* Decorative wood grain lines */
+    .wood-lines {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+    }
+
+    .wood-lines line {
+      stroke: #3d2010;
+      stroke-width: 0.5;
+    }
+
+    .hero-icon {
+      position: relative;
+      z-index: 2;
+      opacity: 0.2;
+    }
+
+    .hero-icon svg {
+      width: 200px;
+      height: 200px;
+      fill: none;
+      stroke: var(--cream);
+      stroke-width: 0.5;
+    }
+
+    .hero-right-label {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      writing-mode: vertical-rl;
+      z-index: 2;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 100%;
+      padding: 4rem 4rem 0;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .section-divider::before, .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--wood-light);
+      opacity: 0.6;
+    }
+
+    /* ── VALORES ── */
+    .valores {
+      padding: 5rem 4rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .valor-item {
+      border-left: 1px solid var(--border);
+      padding-left: 2rem;
+    }
+
+    .valor-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .valor-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--wood);
+      margin-bottom: 0.8rem;
+      font-weight: 500;
+    }
+
+    .valor-text {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ── GALERÍA ── */
+    #galeria {
+      padding: 6rem 4rem;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #galeria::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(139,94,60,0.08) 0%, transparent 70%);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+    }
+
+    .section-title em { font-style: italic; color: var(--wood-light); }
+
+    .section-note {
+      font-size: 0.7rem;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      line-height: 1.7;
+      max-width: 280px;
+      text-align: right;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-item:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover .gallery-placeholder { transform: scale(1.04); }
+
+    .gallery-item:nth-child(1) .gallery-placeholder { background: linear-gradient(145deg, #6b4226, #3d2410); }
+    .gallery-item:nth-child(2) .gallery-placeholder { background: linear-gradient(145deg, #8b5e3c, #5c3d20); }
+    .gallery-item:nth-child(3) .gallery-placeholder { background: linear-gradient(145deg, #a07040, #6b4226); }
+    .gallery-item:nth-child(4) .gallery-placeholder { background: linear-gradient(145deg, #5c3d20, #3d2410); }
+    .gallery-item:nth-child(5) .gallery-placeholder { background: linear-gradient(145deg, #7a5235, #4d2f15); }
+
+    .gallery-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.25;
+      fill: var(--cream);
+    }
+
+    .gallery-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.3);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(26,21,16,0.7);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--cream);
+      font-weight: 300;
+    }
+
+    .gallery-note {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.68rem;
+      color: rgba(122,106,86,0.6);
+      letter-spacing: 0.15em;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      padding: 8rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .contact-left .section-tag { color: var(--wood); }
+    .contact-left .section-tag::before { background: var(--wood); }
+
+    .contact-left .section-title {
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left .section-title em { color: var(--wood); }
+
+    .contact-desc {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    .contact-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .contact-info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: var(--wood);
+      stroke-width: 1.5;
+    }
+
+    .info-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--wood);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-right {
+      background: var(--dark);
+      padding: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-right::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--wood-dark), var(--wood-light), var(--gold));
+    }
+
+    .contact-right::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,94,60,0.15) 0%, transparent 70%);
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.68rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+      margin-bottom: 2.5rem;
+    }
+
+    .wa-button {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #25D366;
+      padding: 1.1rem 1.8rem;
+      text-decoration: none;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .wa-button:hover {
+      background: #128C7E;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.2);
+    }
+
+    .wa-icon { width: 22px; height: 22px; }
+
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .form-divider::before, .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(139,94,60,0.2);
+    }
+
+    .form-divider span {
+      font-size: 0.6rem;
+      color: var(--text-light);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(245,240,232,0.04);
+      border: 1px solid rgba(139,94,60,0.2);
+      padding: 0.85rem 1rem;
+      color: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--wood-light);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(122,106,86,0.4);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+
+    .form-submit:hover { color: var(--dark); }
+    .form-submit:hover::before { transform: translateY(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(139,94,60,0.15);
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .footer-logo span {
+      display: block;
+      font-size: 0.55rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: var(--text-light);
+      margin-top: 3px;
+    }
+
+    .footer-copy {
+      font-size: 0.62rem;
+      color: var(--text-light);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      #inicio { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 7rem 2rem 4rem; }
+      .hero-right { height: 300px; }
+
+      .valores { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+      .section-divider { padding: 3rem 2rem 0; }
+
+      #galeria { padding: 4rem 2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+      }
+      .gallery-item:first-child { grid-row: auto; }
+
+      #contacto { grid-template-columns: 1fr; padding: 4rem 2rem; gap: 3rem; }
+      .contact-right { padding: 2.5rem; }
+
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .section-note { text-align: left; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      Tu Carpintería
+      <span>Guadalajara, Jalisco</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <div class="hero-left">
+      <p class="hero-tag">Carpintería</p>
+      <h1 class="hero-title">
+        Madera trabajada<br>
+        con <em>pasión</em><br>
+        y precisión.
+      </h1>
+      <p class="hero-subtitle">
+        Cada pieza cuenta una historia. Fabricamos muebles a medida,
+        cocinas integrales, closets y puertas con la dedicación de
+        quienes aman su oficio.
+      </p>
+      <div class="hero-since">
+        <span class="year">20</span>
+        <span class="since-text">años de<br>experiencia</span>
+      </div>
+      <a href="#contacto" class="hero-cta">Solicitar presupuesto</a>
+    </div>
+    <div class="hero-right">
+      <div class="hero-right-inner">
+        <svg class="wood-lines" viewBox="0 0 600 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <line x1="0" y1="80"  x2="600" y2="100"/>
+          <line x1="0" y1="160" x2="600" y2="145"/>
+          <line x1="0" y1="240" x2="600" y2="265"/>
+          <line x1="0" y1="310" x2="600" y2="295"/>
+          <line x1="0" y1="390" x2="600" y2="410"/>
+          <line x1="0" y1="460" x2="600" y2="445"/>
+          <line x1="0" y1="530" x2="600" y2="555"/>
+          <line x1="0" y1="610" x2="600" y2="595"/>
+        </svg>
+        <div class="hero-icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="45" width="80" height="10" rx="2"/>
+            <rect x="25" y="20" width="50" height="25" rx="2"/>
+            <rect x="25" y="55" width="50" height="25" rx="2"/>
+            <line x1="50" y1="20" x2="50" y2="80"/>
+            <circle cx="50" cy="50" r="6" fill="none"/>
+          </svg>
+        </div>
+        <p class="hero-right-label">Tlaquepaque · Jalisco · México</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <div class="section-divider"><span class="divider-ornament">✦</span></div>
+  <div class="valores">
+    <div class="valor-item reveal">
+      <div class="valor-num">20</div>
+      <div class="valor-title">Años de experiencia</div>
+      <p class="valor-text">Dos décadas perfeccionando el arte de la carpintería, con cientos de familias satisfechas.</p>
+    </div>
+    <div class="valor-item reveal">
+      <div class="valor-num">100%</div>
+      <div class="valor-title">A medida</div>
+      <p class="valor-text">Cada proyecto es único. Diseñamos y fabricamos exactamente lo que necesitas, adaptado a tu espacio y estilo.</p>
+    </div>
+    <div class="valor-item reveal">
+      <div class="valor-num">∞</div>
+      <div class="valor-title">Garantía de calidad</div>
+      <p class="valor-text">Usamos materiales de primera calidad: madera sólida, MDF, melamina y triplay seleccionados para durar.</p>
+    </div>
+  </div>
+
+  <!-- GALERÍA -->
+  <section id="galeria">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-tag">Nuestro trabajo</div>
+        <h2 class="section-title">Cada mueble,<br>una <em>obra propia.</em></h2>
+      </div>
+      <p class="section-note">
+        Imagenes de nuetros trabajos.
+      </p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="14" rx="1"/>
+            <path d="M3 17l4-4 3 3 4-5 7 6"/>
+          </svg>
+          <span class="gallery-label">Cocinas integrales</span>
+        </div>
+        <div class="gallery-overlay"><p class="gallery-overlay-text">Cocinas a medida</p></div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="14" rx="1"/>
+            <path d="M3 17l4-4 3 3 4-5 7 6"/>
+          </svg>
+          <span class="gallery-label">Closets</span>
+        </div>
+        <div class="gallery-overlay"><p class="gallery-overlay-text">Closets a medida</p></div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="14" rx="1"/>
+            <path d="M3 17l4-4 3 3 4-5 7 6"/>
+          </svg>
+          <span class="gallery-label">Puertas</span>
+        </div>
+        <div class="gallery-overlay"><p class="gallery-overlay-text">Puertas de madera</p></div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="14" rx="1"/>
+            <path d="M3 17l4-4 3 3 4-5 7 6"/>
+          </svg>
+          <span class="gallery-label">Muebles de sala</span>
+        </div>
+        <div class="gallery-overlay"><p class="gallery-overlay-text">Muebles de sala</p></div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="14" rx="1"/>
+            <path d="M3 17l4-4 3 3 4-5 7 6"/>
+          </svg>
+          <span class="gallery-label">Proyectos especiales</span>
+        </div>
+        <div class="gallery-overlay"><p class="gallery-overlay-text">Proyectos especiales</p></div>
+      </div>
+    </div>
+    <p class="gallery-note reveal">📸 Agrega más fotos.</p>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <div class="contact-left">
+      <div class="section-tag">Hablemos</div>
+      <h2 class="section-title" style="color:var(--text)">
+        Tu proyecto<br>empieza con una<br><em>conversación.</em>
+      </h2>
+      <p class="contact-desc">
+        Cuéntanos qué tienes en mente. Sin compromiso, te damos una
+        cotización detallada y te asesoramos sobre materiales, tiempos
+        y acabados.
+      </p>
+      <ul class="contact-info-list">
+        <li>
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <span class="info-label">Ubicación</span>
+            Tlaquepaque, Jalisco — visita al taller con cita previa
+          </div>
+        </li>
+        <li>
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.46 11.46 0 003.58.57 1 1 0 011 1v3.5a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1H7.5a1 1 0 011 1 11.46 11.46 0 00.57 3.58 1 1 0 01-.25 1.01z"/></svg>
+          </div>
+          <div>
+            <span class="info-label">WhatsApp</span>
+            Escríbenos directo — respondemos en menos de 2 horas
+          </div>
+        </li>
+        <li>
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2zm0 2a8 8 0 100 16A8 8 0 0012 4zm0 3v5l4 2-1 1.73-5-2.73V7z"/></svg>
+          </div>
+          <div>
+            <span class="info-label">Horario</span>
+            Lunes a viernes 9:00am - 3:00pm y 5:00pm -7:00pm
+            Sabado 9:00am -3:00pm
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-right reveal">
+      <h3 class="form-title">¿Tienes un proyecto?</h3>
+      <p class="form-subtitle">Escríbenos por WhatsApp o déjanos tus datos</p>
+
+      <a
+        href="https://wa.me/523332450071?text=Hola,%20me%20interesa%20un%20presupuesto%20para%20un%20mueble"
+        class="wa-button"
+        target="_blank"
+      >
+        <svg class="wa-icon" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.655 4.83 1.803 6.856L2 30l7.335-1.78A13.93 13.93 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.54 11.54 0 01-5.87-1.601l-.421-.25-4.355 1.057 1.1-4.234-.274-.435A11.56 11.56 0 014.4 16c0-6.393 5.207-11.6 11.6-11.6S27.6 9.607 27.6 16 22.393 27.6 16 27.6zm6.368-8.682c-.35-.175-2.065-1.02-2.386-1.135-.32-.116-.553-.174-.785.175-.232.347-.9 1.135-1.102 1.367-.203.232-.406.261-.756.087-.35-.175-1.478-.545-2.814-1.736-1.04-.928-1.742-2.074-1.945-2.422-.203-.349-.022-.537.153-.71.157-.155.35-.406.524-.608.175-.203.233-.349.35-.581.116-.232.058-.436-.029-.611-.087-.175-.785-1.893-1.075-2.593-.283-.682-.57-.589-.785-.6l-.668-.011c-.232 0-.61.087-.929.436-.32.348-1.22 1.193-1.22 2.91s1.249 3.375 1.423 3.607c.174.232 2.458 3.753 5.957 5.263.833.359 1.482.574 1.989.735.836.266 1.597.228 2.199.138.671-.1 2.065-.845 2.357-1.66.29-.815.29-1.514.203-1.66-.087-.145-.32-.232-.668-.406z"/>
+        </svg>
+        Solicitar cotización por WhatsApp
+      </a>
+
+      <div class="form-divider"><span>o escríbenos aquí</span></div>
+
+      <div class="form-group">
+        <label>Tu nombre</label>
+        <input type="text" placeholder="¿Cómo te llamas?"/>
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="33 1234 5678"/>
+      </div>
+      <div class="form-group">
+        <label>¿Qué necesitas?</label>
+        <textarea rows="3" placeholder="Cuéntanos tu proyecto: tipo de mueble, medidas aproximadas, material preferido..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('¡Mensaje enviado! Te contactaremos pronto.')">
+        Enviar mensaje
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      Tu Carpintería
+      <span>Tlaquepaque, Jalisco · México</span>
+    </div>
+    <p class="footer-copy">© 2025 · Carpintería artesanal con 20 años de experiencia en GDL</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      nav.style.boxShadow = window.scrollY > 50
+        ? '0 4px 30px rgba(26,21,16,0.12)'
+        : 'none';
+    });
+  </script>
+</body>
+</html>
